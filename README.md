@@ -129,4 +129,4 @@ This project is released under the MIT License.
 
 ---
 
-Let me know if you'd like a styled version with markdown formatting ready for upload to GitHub.
+
