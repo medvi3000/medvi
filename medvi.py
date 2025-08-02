@@ -62,21 +62,7 @@ def login_user():
 def show_dashboard():
     root.geometry("900x500")
     dashboard_frame.pack()
-
-def capture_image():
-    global captured_image_path
-    try:
-        cap = cv2.VideoCapture(0)
-        ret, frame = cap.read()
-        cap.release()
-        if ret:
-            captured_image_path = "captured_image.jpg"
-            cv2.imwrite(captured_image_path, frame)
-            update_preview(captured_image_path)
-        else:
-            messagebox.showerror("Error", "Image capture failed.")
-    except Exception as e:
-        messagebox.showerror("Error", str(e))
+#WITHELD
 
 def button_pressed():
     capture_image()
@@ -103,23 +89,7 @@ def upload_image():
         captured_image_path = path
         update_preview(path)
 
-def generate_report():
-    if not captured_image_path:
-        messagebox.showwarning("No Image", "Upload or capture an image first.")
-        return
-    text = extract_text_from_image(captured_image_path)
-    output_box.delete("1.0", tk.END)
-    output_box.insert(tk.END, text)
-
-def save_to_db():
-    if not captured_image_path or output_box.get("1.0", tk.END).strip() == "":
-        messagebox.showwarning("Empty Fields", "Ensure an image is captured and report generated.")
-        return
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    cursor.execute("INSERT INTO reports (patient_id, phone_number, timestamp, image_path, extracted_text) VALUES (?, ?, ?, ?, ?)",
-                   (patient_id, phone_number, now, captured_image_path, output_box.get("1.0", tk.END)))
-    conn.commit()
-    messagebox.showinfo("Saved", "Report saved successfully.")
+# WITHHELD
 
 def download_report():
     if output_box.get("1.0", tk.END).strip() == "":
